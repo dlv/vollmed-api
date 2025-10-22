@@ -27,6 +27,8 @@ jobs:
         run: docker-compose up -d
       - name: Executa testes unitários
         run: mvn -B verify
+      - name: Gera relatório Jacoco
+        run: mvn jacoco:prepare-agent verify
       - name: Análise Estática
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
