@@ -32,4 +32,4 @@ jobs:
       - name: Análise Estática
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=dlv_vollmed-api
+        run: mvn sonar:sonar -Dsonar.projectKey=dlv_vollmed-api
