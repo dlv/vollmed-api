@@ -3,8 +3,10 @@ services:
   mysqldb:
     image: mysql:8.0.36
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=vollmed_api
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-vollmed_db}
+      - MYSQL_USER=${MYSQL_USER:-vollmed_user}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-vollmed_password}
     volumes:
       - ./mysql-data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -19,7 +21,7 @@ services:
     container_name: vollmed
     restart: unless-stopped
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/vollmed_api?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/vollmed_db?createDatabaseIfNotExist=true
     depends_on: 
       - mysqldb
     ports:
