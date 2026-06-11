@@ -1,0 +1,23 @@
+name: Criar PR para Develop
+
+on:
+  push:
+    branches:
+      - 'feature/*'
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Criar Pull Request para Develop
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'Atualiza a feature com os últimos artefatos gerados'
+          branch: ${{ github.ref_name }}-pr
+          base: develop
+          title: 'Auto PR: ${{ github.ref_name }} para Develop'
+          body: 'Pull request criado automaticamente após novos commits na branch feature.'
+          labels: automatic-pr
