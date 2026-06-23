@@ -18,7 +18,7 @@ services:
   
   api:
     build: .
-    container_name: vollmed
+    container_name: vollmed-api
     restart: unless-stopped
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/${MYSQL_DATABASE:-vollmed_db}?createDatabaseIfNotExist=true
