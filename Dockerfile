@@ -1,6 +1,7 @@
 # Stage 1: Build with full JDK and Maven
 FROM maven:3.9.6-eclipse-temurin-17 AS builder
 
+
 WORKDIR /workspace
 
 # Copy dependency descriptors first to leverage Docker layer cache
