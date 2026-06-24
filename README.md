@@ -41,6 +41,12 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do proj
 
 ---
 
+## Testes
+
+Os testes da API foram implementados utilizando JUnit 5 e Mockito para garantir a qualidade do código e a correção das funcionalidades.
+
+Mais informações sobre como executar os testes podem ser encontradas no arquivo [TESTES.md](TESTES.md).
+
 ## 📝 Licença
 
 Projeto desenvolvido por [Alura](https://www.alura.com.br) e utilizado nos cursos de Spring Boot.
