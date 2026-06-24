@@ -6,18 +6,21 @@ on:
       - 'feature/*'
 
 jobs:
-  create_pr:
+  create-pull-request:
     runs-on: ubuntu-latest
+    permissions:
+        contents: write
+        pull-requests: write
+
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
 
       - name: Criar Pull Request para Develop
-        uses: peter-evans/create-pull-request@v8
+        uses: repo-sync/pull-request@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'Atualiza a feature com os últimos artefatos gerados'
-          branch: ${{ github.ref_name }}-pr
-          base: develop
-          title: 'Auto PR: ${{ github.ref_name }} para Develop'
-          body: 'Pull request criado automaticamente após novos commits na branch feature.'
-          labels: automatic-pr
+          source_branch: ${{ github.ref_name }}
+          destination_branch: 'develop'
+          pr_title: 'Auto PR: ${{ github.ref_name }} para Develop'
+          pr_body: 'Pull request criado automaticamente após novos commits na branch feature.'
+          pr_labels: 'automerge'
